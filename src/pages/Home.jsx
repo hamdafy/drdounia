@@ -64,7 +64,7 @@ const Home = () => {
           
             <button className='btn btn-delete'  onClick={()=> onDelete(id)}>delete </button>
           
-          <Link to ={`/view`}>
+          <Link to ={`/view/${id}`}>
             <button className='btn btn-view'>view </button>
           </Link>
         </td>

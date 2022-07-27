@@ -55,25 +55,36 @@ const AddUpdate = () => {
      const handleSubmit = (e) =>{
 
         e.preventDefault();
-        if(!name || !email || !contact || !fees || !status){
-           toast.error("makin mabo walakin")
-        }else{
-         console.log(state);
-            firebaseDB.child('patients').push(state,(err) =>{
-                console.log(state);
-             if(err){
-                toast.error(err);
-                console.log('error');
-
-             }else{
-                toast.success("richti hinzugefugt ");
-                console.log('richtig')
-
-             }
-            })
-            setTimeout(()=> navigate('/'),500)
+        if (!id){
+         if(!name || !email || !contact || !fees || !status){
+            toast.error("makin mabo walakin")
+         }else{
+          console.log(state);
+             firebaseDB.child('patients').push(state,(err) =>{
+                
+              if(err){
+                 toast.error(err);
+              }else{
+                 toast.success("richti hinzugefugt ");
+              }
+             });
         }
-     };
+      }
+        else{
+          firebaseDB.child(`patients/${id}`).set(state,(err)=>{
+            if(err){
+               toast.error(err)
+            }else{
+               toast.success("edit with success ")
+            }
+
+          })
+        }
+      
+            setTimeout(()=> navigate('/'),200)
+        }
+   
+   
 
   return (
     <div style={{marginTop:"50px"}}>
@@ -89,7 +100,7 @@ const AddUpdate = () => {
 
    
    id='name'
-   value={name}
+   value={name  || ""}
    name='name'
    onChange={handleInputChange}/>
 
@@ -97,7 +108,7 @@ const AddUpdate = () => {
    <input type="email" placeholder="entrer votre email"
    
    id='email'
-   value={email}
+   value={email  || ""}
    name='email'
    onChange={handleInputChange}/>
 
@@ -105,7 +116,7 @@ const AddUpdate = () => {
    <input type="number" placeholder="entrer votre contact"
    
    id='contact'
-   value={contact}
+   value={contact || "" }
    name='contact'
    onChange={handleInputChange}/>
   
@@ -122,11 +133,11 @@ const AddUpdate = () => {
    <input type="text" placeholder="entrer votre status"
    
    id='status'
-   value={status}
+   value={status  || ""}
    name='status'
    onChange={handleInputChange}/>
 
-  <input type="submit" value="save" />
+  <input type="submit" value={id  ? "update" : "save"} />
 
      </form>
     </div>
