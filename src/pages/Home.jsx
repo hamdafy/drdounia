@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import firebaseDB from '../firebase';
 import './home.css';
 const Home = () => {
-  const [data,setData]= useState({})
+  const [data , setData]= useState({});
   useEffect(()=>{
        firebaseDB.child('patients').on("value",(snapshop) =>{
         if(snapshop.val() !=null){

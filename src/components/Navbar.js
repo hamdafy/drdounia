@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import {Link,useLocation} from 'react-router-dom'
+import {Link,Navigate,useLocation, useNavigate} from 'react-router-dom'
 import './Navbar.css'
 
 
 const Navbar = () => {
   const [activeTab , setactiveTab] = useState("Home")
+  const [search , setSearch] = useState("")
   const location = useLocation();
+  const navigate = useNavigate()
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    navigate(`/search?contact=${search}`)
+    setSearch("")
+  }
   useEffect(()=>{
     if(location.pathname === '/'){
         setactiveTab("Home")
@@ -23,6 +30,14 @@ const Navbar = () => {
         <p className='logo'>dounia  Dafy</p>
          </Link>
         <div className='header-right'>
+          <form onSubmit={handleSubmit} style={{display:"inline"}}>
+            <input type ="text" 
+            className='inputfield' 
+            placeholder='Search P.name'
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+            />
+          </form>
 
 
         <Link to = '/'> 
@@ -44,7 +59,7 @@ const Navbar = () => {
 
          
         </div>
-
+     view
     </div>
   )
 }

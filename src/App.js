@@ -7,7 +7,9 @@ import AddUpdate from './pages/AddUpdate';
 import About from './pages/About';
 import'react-toastify/dist/ReactToastify.css'
 import {ToastContainer} from 'react-toastify'
-import View from './pages/View';
+import View from './pages/View'
+
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
       <Route path='/update/:id' element={<AddUpdate/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/view/:id' element={<View/>}/>
+      <Route path='/search' element={<Search/>}/>
       
      </Routes>
     </div>
