@@ -27,7 +27,7 @@ const View = () => {
 
             </div>
 
-            <div className='conatiner'>
+            <div className='conatiner0'>
                 <p> patiente detaails </p>
                 <strong> ID:</strong>
                 <span> {id} </span>
@@ -54,7 +54,7 @@ const View = () => {
                 <span> {patient.status} </span>
                 <br/>
                 <br/>
-                <Link to ='/'>
+                <Link to ='/home'>
                     <button className='btn btn-edit'> zurück</button>
                 </Link>
             </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Link,Navigate,useLocation, useNavigate} from 'react-router-dom'
 import './Navbar.css'
+import {ToastContainer} from 'react-toastify'
 
 
 const Navbar = () => {
@@ -26,7 +27,8 @@ const Navbar = () => {
   },[location])
   return (
     <div className='header'>
-        <Link to = '/'> 
+      <ToastContainer position='top-center'/>
+        <Link to = '/home'> 
         <p className='logo'>dounia  Dafy</p>
          </Link>
         <div className='header-right'>
@@ -40,7 +42,7 @@ const Navbar = () => {
           </form>
 
 
-        <Link to = '/'> 
+        <Link to = '/home'> 
         <p className={`${activeTab==="Home" ? 'active':""}`}
         onClick ={()=>setactiveTab('Home')}>Home</p>
          </Link>

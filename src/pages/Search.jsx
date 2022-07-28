@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useLocation ,Link} from 'react-router-dom'
 import firebaseDB from '../firebase';
 import './search.css'
+import Navbar from '../components/Navbar';
 
 const Search = () => {
      const [data,setData] = useState({})
@@ -30,10 +31,11 @@ const Search = () => {
 
   return (
     <>
-    <div style={{marginTop:"50px"}}>
-      <h1> patients de dounia sortiert nach name </h1>
-      <Link to='/'>
-        <button className='btn btn-edit'> zurück</button>
+    <Navbar></Navbar>
+    <div style={{textAlign:"center" , padding:"50px"}}>
+      <h1 className='texttocenter'> patients de dounia sortiert nach name </h1>
+      <Link to='/home'>
+        <button   className='btn btn-edit '> zurück</button>
       </Link>
       {Object.keys(data).length === 0 ? (
         <h2>no search result</h2>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Navbar from '../components/Navbar';
 import firebaseDB from '../firebase';
 import './home.css';
+import {ToastContainer} from 'react-toastify'
 const Home = () => {
   const [data , setData]= useState({});
   useEffect(()=>{
@@ -31,10 +33,15 @@ const Home = () => {
   }
 
   return (
-    <div style={{marginTop:"50px"}}>
-      <h1> patients de dounia </h1>
-  <table className='table-stayled'>
+   <div>
+ <ToastContainer position='top-center'/>
+ <Navbar></Navbar>
 
+    <div style={{marginTop:"50px"}}>
+    
+      <h1 className='greating'> patients de dounia </h1>
+  <table className='table-stayled'>
+    
     <thead>
       <tr>
           <th style={{textAlign:"center"}}> no</th>
@@ -76,6 +83,7 @@ const Home = () => {
     )}
     </tbody>
   </table>
+    </div>
     </div>
   )
 }

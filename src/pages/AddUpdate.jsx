@@ -4,6 +4,8 @@ import {useNavigate, useParams} from 'react-router-dom';
 import './addupdate.css';
 import firebaseDB from '../firebase'
 import'react-toastify/dist/ReactToastify.css';
+import Navbar from '../components/Navbar';
+import {ToastContainer} from 'react-toastify'
 const initialState={
     name :'',
     email:'',
@@ -81,18 +83,23 @@ const AddUpdate = () => {
           })
         }
       
-            setTimeout(()=> navigate('/'),200)
+            setTimeout(()=> navigate('/home'),200)
         }
    
    
 
   return (
+   <>
+      <ToastContainer position='top-center'/>
+
+   <Navbar></Navbar>
+  
     <div style={{marginTop:"50px"}}>
      <form style={{
         margin:"auto",
         padding :"1rem",
         maxWidth : "450px",
-        alignContent:"center",
+        alignContent:"center"
      }} onSubmit={handleSubmit}>
    <label htmlFor='name'>Name</label>
    <input type="text" placeholder="entrer votre nom "
@@ -104,7 +111,7 @@ const AddUpdate = () => {
    name='name'
    onChange={handleInputChange}/>
 
-<label htmlFor='name'> Email</label>
+<label className="text-center" htmlFor='name'> Email</label>
    <input type="email" placeholder="entrer votre email"
    
    id='email'
@@ -137,10 +144,11 @@ const AddUpdate = () => {
    name='status'
    onChange={handleInputChange}/>
 
-  <input type="submit" value={id  ? "update" : "save"} />
+  <input  type="submit" value={id  ? "update" : "save"} />
 
      </form>
     </div>
+    </>
   )
 }
 
