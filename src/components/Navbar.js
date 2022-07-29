@@ -2,9 +2,24 @@ import React, { useEffect, useState } from 'react'
 import {Link,Navigate,useLocation, useNavigate} from 'react-router-dom'
 import './Navbar.css'
 import {ToastContainer} from 'react-toastify'
-
+import { useUserAuth } from '../pages/context/UserAuthContext'
 
 const Navbar = () => {
+  const { logOut, user } = useUserAuth();
+  const handleLogout = async () => {
+    if(window.confirm("willst  du dich wirklich ausloggen  ")){
+
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+     
+  }
+
+  }
+  
   const [activeTab , setactiveTab] = useState("Home")
   const [search , setSearch] = useState("")
   const location = useLocation();
@@ -31,6 +46,9 @@ const Navbar = () => {
         <Link to = '/home'> 
         <p className='logo'>dounia  Dafy</p>
          </Link>
+      
+       
+        
         <div className='header-right'>
           <form onSubmit={handleSubmit} style={{display:"inline"}}>
             <input type ="text" 
@@ -52,13 +70,13 @@ const Navbar = () => {
         <p className={`${activeTab==="AddStudent" ? 'active':""}`}
         onClick ={()=>setactiveTab('AddStudent')}>Add patient</p>
          </Link>
-
+         
 
          <Link to = '/about'> 
         <p className={`${activeTab==="About" ? 'active':""}`}
         onClick ={()=>setactiveTab('About')}>About</p>
          </Link>
-
+         <p onClick={handleLogout} >log out </p>
          
         </div>
      view

@@ -37,7 +37,7 @@ const Login = () => {
     <>
     <Navbar></Navbar>
        
-      <div  style={{textAlign:"center"}} className="p-4 box login00">
+      <div  style={{textAlign:"center"}} className="p-4 box login00 login02">
         <h2  className="mb-3 textocenter"> salam marhaba bikoum f had lapp 
          </h2>
          <h2  className="mb-3 textocenter"> 
@@ -66,13 +66,13 @@ const Login = () => {
             </Button>
           </div>
         </Form>
-        <hr />
+   
         <div>
           
         </div>
       </div>
-      <div className="p-4 box mt-3 text-center">
-      SINGUM MAKHDMCH PR LE MOMENT  <Link to="/signup">tsejel</Link>
+      <div style={{textAlign:"center"}}>
+      s'inscrire makhdamch pr le moment <Link to="/signup">tsejel</Link>
       </div>
     </>
   );

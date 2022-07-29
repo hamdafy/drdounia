@@ -5,7 +5,10 @@ import Navbar from '../components/Navbar';
 import firebaseDB from '../firebase';
 import './home.css';
 import {ToastContainer} from 'react-toastify'
+import { useUserAuth } from "./context/UserAuthContext";
+
 const Home = () => {
+  const { logOut, user } = useUserAuth();
   const [data , setData]= useState({});
   useEffect(()=>{
        firebaseDB.child('patients').on("value",(snapshop) =>{
@@ -20,6 +23,8 @@ const Home = () => {
        }
   },[])
   const onDelete = (id) =>{
+
+    if (user.email==="hamzadafy@hotmail.com") {
     if(window.confirm("bghiti tsuprimmer had lpatient ")){
       firebaseDB.child(`patients/${id}`).remove((err)=>{
          if(err){
@@ -29,13 +34,20 @@ const Home = () => {
          }
       })
     }
-
+  }else{
+    window.confirm("bghiti tsuprimmer had lpatient ")
+  }
   }
 
   return (
    <div>
  <ToastContainer position='top-center'/>
  <Navbar></Navbar>
+ 
+ {user.email==="hamzadafy00@hotmail.com"  ? <p> Hello Welcome Admin du hast volle Rechte <br /> </p>  : <p> Hello Welcome Artzhelferin du kannst leider nich löschen und bearbeiten <br /> </p>}
+          
+
+
 
     <div style={{marginTop:"50px"}}>
     
@@ -64,12 +76,22 @@ const Home = () => {
         <td>{data[id].fees}</td>
         <td>{data[id].status}</td>
         <td>
-          <Link to= {`/update/${id}`}>
+        {user.email==="hamzadafy00@hotmail.com"   &&    <Link to= {`/update/${id}`}>
             <button className='btn btn-edit'>edit </button>
+            
+            </Link>
+ }
+          
+       
+            {user.email==="hamzadafy00@hotmail.com"   && <button className='btn btn-delete'  onClick={()=> onDelete(id)}>delete </button> }
+          
+           
+          <Link to ={`/view/${id}`}>
+         
           </Link>
 
           
-            <button className='btn btn-delete'  onClick={()=> onDelete(id)}>delete </button>
+          
           
           <Link to ={`/view/${id}`}>
             <button className='btn btn-view'>view </button>
